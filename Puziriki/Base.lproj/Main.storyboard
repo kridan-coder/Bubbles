@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -13,18 +14,36 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Puziriki" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ImageBackground" translatesAutoresizingMaskIntoConstraints="NO" id="r7N-rV-lbU">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                             </imageView>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Js-yJ-HcZ">
+                                <rect key="frame" x="92.666666666666686" y="796" width="243" height="83.666666666666629"/>
+                                <color key="backgroundColor" name="AccentColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="  Очистить пузырьки  ">
+                                    <color key="titleColor" name="SplashScreenBackgroundColor"/>
+                                </state>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bdz-Vt-OLu">
+                                <rect key="frame" x="0.0" y="44" width="428" height="714.33333333333337"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="5Js-yJ-HcZ" firstAttribute="bottom" secondItem="r7N-rV-lbU" secondAttribute="bottom" multiplier="0.95" id="AkS-vS-ODh"/>
                             <constraint firstAttribute="bottom" secondItem="r7N-rV-lbU" secondAttribute="bottom" id="Ber-XI-xK4"/>
+                            <constraint firstItem="bdz-Vt-OLu" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="MoK-Ge-rmg"/>
+                            <constraint firstItem="5Js-yJ-HcZ" firstAttribute="centerX" secondItem="r7N-rV-lbU" secondAttribute="centerX" id="ZgZ-hM-lNi"/>
                             <constraint firstAttribute="top" secondItem="r7N-rV-lbU" secondAttribute="top" id="aYc-qf-29H"/>
+                            <constraint firstItem="bdz-Vt-OLu" firstAttribute="trailing" secondItem="r7N-rV-lbU" secondAttribute="trailing" id="bPK-e1-tKY"/>
+                            <constraint firstItem="bdz-Vt-OLu" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" multiplier="0.85" id="cEo-Zg-B5N"/>
+                            <constraint firstItem="bdz-Vt-OLu" firstAttribute="leading" secondItem="r7N-rV-lbU" secondAttribute="leading" id="jJ4-H2-VLe"/>
+                            <constraint firstItem="5Js-yJ-HcZ" firstAttribute="top" secondItem="bdz-Vt-OLu" secondAttribute="bottom" multiplier="1.05" id="lhY-nd-8o0"/>
                             <constraint firstAttribute="leading" secondItem="r7N-rV-lbU" secondAttribute="leading" id="qIb-SU-xDY"/>
                             <constraint firstAttribute="trailing" secondItem="r7N-rV-lbU" secondAttribute="trailing" id="ul0-yD-x8j"/>
                         </constraints>
@@ -37,6 +56,12 @@
     </scenes>
     <resources>
         <image name="ImageBackground" width="5616" height="3744"/>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="SplashScreenBackgroundColor">
+            <color red="0.99215686274509807" green="0.89803921568627454" blue="0.69411764705882351" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
