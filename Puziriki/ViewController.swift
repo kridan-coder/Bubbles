@@ -15,28 +15,52 @@ class Bubble{
 class ViewController: UIViewController {
 
     var animator: UIDynamicAnimator!
-    var gravity = UIGravityBehavior()
+    var gravities = [UIGravityBehavior]()
     var collision = UICollisionBehavior()
+    
+    
+    @objc func changeGravityAngle(){
+        gravities.forEach{
+            $0.angle += CGFloat.random(in: -1...1)
+            $0.magnitude = CGFloat.random(in: 0.01...0.02)
+        }
+    }
     
     @IBOutlet weak var bubbleView: UIView!
     
     @IBAction func clearButtonPressed() {
+        //for item in gravity.items
+        //{
+        //   gravity.removeItem(item)
+        //}
+        bubbleView.subviews.forEach {
+            $0.removeFromSuperview()
+        }
     }
     
     @objc func bubbleViewTapped(touch: UITapGestureRecognizer)
     {
         let touchPoint = touch.location(in: bubbleView)
-        let bubble = createBubble(coords: (touchPoint.x, touchPoint.y))
-        self.view.addSubview(bubble)
-        gravity.addItem(bubble)
+        let bubble = UIViewBubble(coords: (touchPoint.x, touchPoint.y))
+        self.bubbleView.addSubview(bubble)
+        addGravity()
+        gravities[gravities.count - 1].addItem(bubble)
         collision.addItem(bubble)
 
         
     }
     
-    func createBubble(coords:(x: CGFloat, y: CGFloat)) -> UIView{
-        let puzirik = UIView(frame: CGRect(x: coords.x, y: coords.y, width: 100, height: 100))
-        puzirik.layer.cornerRadius = 25
+    func addGravity(){
+        let gravity = UIGravityBehavior()
+        gravity.magnitude = CGFloat.random(in: 0.01...0.02)
+        gravities.append(gravity)
+        animator.addBehavior(gravity)
+    }
+    
+    func UIViewBubble(coords:(x: CGFloat, y: CGFloat)) -> UIView{
+        let randSize = CGFloat.random(in: bubbleView.bounds.maxX/8...bubbleView.bounds.maxX/3)
+        let puzirik = UIView(frame: CGRect(x: coords.x, y: coords.y, width: randSize, height: randSize))
+        puzirik.layer.cornerRadius = randSize/2
         puzirik.layer.borderWidth = 2
         return puzirik
 
@@ -47,11 +71,20 @@ class ViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(bubbleViewTapped(touch:)))
         tap.numberOfTapsRequired = 1
         bubbleView.addGestureRecognizer(tap)
-        animator = UIDynamicAnimator.init(referenceView: self.view)
+        animator = UIDynamicAnimator.init(referenceView: bubbleView)
+        
+
+
+        // gravity set
+
         // set boundaries
         collision.translatesReferenceBoundsIntoBoundary = true
-        animator.addBehavior(gravity)
+
         animator.addBehavior(collision)
+        
+        
+        //timer set
+        Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(changeGravityAngle), userInfo: nil, repeats: true)
     }
 
 }
